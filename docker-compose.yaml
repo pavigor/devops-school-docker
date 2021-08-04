@@ -1,0 +1,32 @@
+version: "2.4"
+services:
+  nginx:
+    image: localhost:5000/devops_school/nginx:latest
+    ports:
+      - "8081:8081"
+    networks:
+      - nginx    
+    volumes:
+      - ./static:/var/www/html
+    mem_limit: 128m
+    cpus: 0.30
+
+  httpd:
+    image: localhost:5000/devops_school/httpd:latest
+    ports:
+      - "8082:8082"
+    networks:
+      - apache
+    volumes:
+      - ./static:/var/www/html
+    mem_limit: 128m
+    cpus: 0.30
+
+networks:
+  nginx:
+    driver: bridge
+
+  apache:
+    driver: bridge
+
+
